@@ -1,0 +1,19 @@
+on:
+  pull_request_target:
+    types:
+      - opened
+    branches:
+      - main
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on:
+        - ubuntu-latest
+    steps:
+    - run: |
+        set -x
+        docker build . -t albums
