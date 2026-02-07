@@ -18,3 +18,27 @@ jobs:
       run: |
         set -x
         docker build . -t albums
+
+    #  TODO: replace with docker compose up and down
+    - name: run docker
+      id: run-docker
+      shell: bash
+      run: |
+        set -x
+        docker run -p 8080:8080 albums&
+        echo "PID=$!" >> "$GITHUB_OUTPUT"
+
+    - name: run test
+      shell: bash
+      run: |
+        set -x
+        curl http://127.0.0.1:8080/albums --header "Content-Type: application/json" --request "GET"
+
+    - name: cleanup
+      if: always()
+      shell: bash
+      env:
+        PID: ${{ steps.run-docker.outputs.PID }}
+      run: |
+        set -x
+        kill -9 $PID
