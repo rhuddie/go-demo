@@ -1,9 +1,5 @@
 on:
-  pull_request_target:
-    types:
-      - opened
-    branches:
-      - main
+  pull_request:
   push:
     branches:
       - main
@@ -14,7 +10,9 @@ jobs:
     runs-on:
         - ubuntu-latest
     steps:
-    - run: |
+    - name: build docker
+      shell: bash
+      run: |
         set -x
         pwd
         ls -lah
