@@ -3,6 +3,7 @@ https://go.dev/doc/tutorial/web-service-gin#prerequisites
 
 go mod init albums
 go get github.com/gin-gonic/gin
+go get albums
 go build
 go run main.go
 
