@@ -16,4 +16,6 @@ jobs:
     steps:
     - run: |
         set -x
+        pwd
+        ls -lah
         docker build . -t albums
