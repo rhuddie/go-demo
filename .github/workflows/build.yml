@@ -10,6 +10,9 @@ jobs:
     runs-on:
         - ubuntu-latest
     steps:
+    - name: checkout
+      uses: actions/checkout@v6.0.2
+
     - name: build docker
       shell: bash
       run: |
