@@ -4,7 +4,7 @@ running in a GitHub Actions workflow.
 
 ## References
 https://images.chainguard.dev/directory/image/go/overview
-https://go.dev/doc/tutorial/web-service-gin#prerequisites
+https://go.dev/doc/tutorial/web-service-gin
 
 
 # Setup commands

@@ -24,13 +24,15 @@ var albums = []album{
 	{ID: "3", Title: "Sarah Vaughan and Clifford Brown", Artist: "Sarah Vaughan", Price: 39.99},
 }
 
+const defaultPort = "8080"
+
 func main() {
 	router := gin.Default()
 	router.GET("/albums", getAlbums)
 	router.GET("/albums/:id", getAlbumByID)
 	router.POST("/albums", postAlbums)
 	// removed localhost to run it from docker
-	port := cmp.Or(os.Getenv("PORT"), "8080")
+	port := cmp.Or(os.Getenv("PORT"), defaultPort)
 	router.Run(fmt.Sprint(":", port))
 }
 
