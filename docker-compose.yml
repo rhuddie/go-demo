@@ -7,7 +7,9 @@ services:
       dockerfile: Dockerfile
       tags:
         - albums
+      args:
+        PORT: "${PORT}"
     networks:
       - internal
     ports:
-      - 8080:8080
+      - ${PORT}:${PORT}

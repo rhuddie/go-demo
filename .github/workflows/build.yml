@@ -11,6 +11,7 @@ jobs:
         - ubuntu-latest
     env:
       DOCKER_COMPOSE_FILE: docker-compose.yml
+      PORT: "8081"
     steps:
     - name: checkout
       uses: actions/checkout@v6.0.2
@@ -23,23 +24,20 @@ jobs:
         docker compose -f ${{ env.DOCKER_COMPOSE_FILE }} build
 
     - name: run docker
-      id: run-docker
       shell: bash
       run: |
         set -x
         docker compose -f ${{ env.DOCKER_COMPOSE_FILE }} up -d
 
-    - name: run test
+    - name: run tests
       shell: bash
       run: |
         set -x
-        curl http://127.0.0.1:8080/albums --header "Content-Type: application/json" --request "GET"
+        ./tests.sh
 
     - name: cleanup
       if: always()
       shell: bash
-      env:
-        PID: ${{ steps.run-docker.outputs.PID }}
       run: |
         set -x
         docker compose -f ${{ env.DOCKER_COMPOSE_FILE }} logs webserver
